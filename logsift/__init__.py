@@ -1,29 +1,11 @@
-"""LOGSIFT - defensive auth-log triage.
-
-Detects brute-force, password-spray, and anomalous authentication events
-from standard auth/SSH logs. Analysis and detection only; LOGSIFT never
-performs or assists any attack. It is meant to support authorized incident
-triage and monitoring, in the spirit of fail2ban.
-"""
-from .core import (
-    AuthEvent,
-    Finding,
-    parse_line,
-    parse_lines,
-    analyze,
-    summarize,
-)
-
-TOOL_NAME = "logsift"
-TOOL_VERSION = "1.0.0"
-
-__all__ = [
-    "AuthEvent",
-    "Finding",
-    "parse_line",
-    "parse_lines",
-    "analyze",
-    "summarize",
-    "TOOL_NAME",
-    "TOOL_VERSION",
-]
+"""logsift — part of the Cognis Neural Suite."""
+try:  # re-export the tool's public API + identity from core
+    from logsift.core import *  # noqa: F401,F403
+except Exception:  # pragma: no cover
+    pass
+try:
+    from logsift.core import TOOL_NAME, TOOL_VERSION
+except Exception:  # pragma: no cover
+    TOOL_NAME = "logsift"
+    TOOL_VERSION = "0.1.0"
+__version__ = TOOL_VERSION
