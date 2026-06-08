@@ -36,9 +36,10 @@ auth-log triage
 <a name="features"></a>
 ## Features
 
-- ✅ Todo
-- ✅ Fixme
-- ✅ Xxx
+- ✅ Parse Line
+- ✅ Parse Lines
+- ✅ Analyze
+- ✅ Summarize
 - ✅ Runs on Linux/macOS/Windows · Docker · devcontainer
 - ✅ Ports in Python, JavaScript, Go, and Rust (`ports/`)
 
