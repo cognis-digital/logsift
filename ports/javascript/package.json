@@ -1,0 +1,10 @@
+{
+  "name": "@cognis/logsift",
+  "version": "0.2.0",
+  "description": "JavaScript port of logsift (Cognis Neural Suite)",
+  "bin": {
+    "logsift": "index.js"
+  },
+  "license": "LicenseRef-COCL-1.0",
+  "type": "module"
+}
