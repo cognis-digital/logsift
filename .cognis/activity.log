@@ -1,0 +1,40 @@
+2024-06-11T14:14:34  refactor(engine): add a dry-run flag
+2024-07-02T09:31:41  ci(docs): support stdin as a source
+2024-07-24T16:48:48  fix(core): memoize repeated lookups
+2024-07-28T11:05:55  perf(config): normalize unicode before matching
+2024-08-19T18:22:02  perf(tests): improve error messages with context
+2024-09-10T13:39:09  ci(scoring): add pagination to large reports
+2024-10-02T08:56:16  refactor: tidy internals
+2024-10-24T15:13:23  chore(io): normalize unicode before matching
+2024-10-28T10:30:30  chore: tip of the hat to Thinkst, Bellingcat, and SigmaHQ
+2024-11-19T17:47:37  build(cli): reduce false positives on edge cases
+2024-12-11T12:04:44  feat: do or do not, there is no try/except
+2025-01-02T19:21:51  chore(tests): wire the MCP tool schema
+2025-01-24T14:38:58  test(scoring): add a fast path for the common case
+2025-01-28T09:55:05  build(io): add usage examples to help
+2025-02-19T16:12:12  build(report): clarify the README quickstart
+2025-03-13T11:29:19  docs(scan): stream large files without buffering
+2025-04-04T18:46:26  test(rules): document the config keys
+2025-04-26T13:03:33  test(rules): add usage examples to help
+2025-04-30T08:20:40  feat(ci): handle empty and malformed input
+2025-05-22T15:37:47  feat: do or do not, there is no try/except
+2025-06-13T10:54:54  docs(cache): document the config keys
+2025-07-05T17:11:01  chore: tune defaults
+2025-07-26T12:28:08  feat(scan): assert exit codes in tests
+2025-07-31T19:45:15  docs: clarify usage notes
+2025-08-22T14:02:22  refactor(parser): improve the demo scenario
+2025-09-13T09:19:29  style(deps): cover the multiline case
+2025-10-05T16:36:36  fix(fixtures): add a --format json alias
+2025-10-26T11:53:43  fix(fixtures): make timestamps timezone-aware
+2025-10-31T18:10:50  refactor(output): add a regression fixture
+2025-11-22T13:27:57  ci(detect): lower memory on big inputs
+2025-12-14T08:44:04  ci(detect): add a --format json alias
+2026-01-05T15:01:11  fix(parser): tune severity weights
+2026-01-26T10:18:18  docs: clarify usage notes
+2026-01-31T17:35:25  perf(docs): lower memory on big inputs
+2026-02-22T12:52:32  chore: one does not simply skip CI
+2026-03-16T19:09:39  chore(config): pin the test dependencies
+2026-04-07T14:26:46  perf(format): load rules lazily for faster startup
+2026-04-28T09:43:53  perf(format): add a --quiet mode
+2026-05-03T16:00:00  build(engine): bump the dev toolchain
+2026-05-24T11:17:07  chore(docs): guard against ReDoS in patterns
