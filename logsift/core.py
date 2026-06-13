@@ -35,7 +35,11 @@ _SYSLOG_RE = re.compile(
 )
 
 _IP_RE = re.compile(r"(?P<ip>(?:\d{1,3}\.){3}\d{1,3}|[0-9a-fA-F:]{2,})")
-_USER_RE = re.compile(r"(?:invalid user|user)\s+(?P<user>[^\s]+)", re.I)
+_USER_RE = re.compile(
+    r"(?:invalid user|user)\s+(?P<user>[^\s]+)"
+    r"|(?:password|publickey|keyboard-interactive)\s+for\s+(?:invalid\s+user\s+)?(?P<user2>[^\s]+)",
+    re.I,
+)
 _FROM_RE = re.compile(r"from\s+(?P<ip>(?:\d{1,3}\.){3}\d{1,3}|[0-9a-fA-F:]{2,})")
 
 # Outcome detection patterns (lower-cased message tested against these).
@@ -145,7 +149,7 @@ def parse_line(line: str, lineno: int = 0, year: Optional[int] = None) -> Option
     user = None
     um = _USER_RE.search(msg)
     if um:
-        user = um.group("user")
+        user = um.group("user") or um.group("user2")
 
     return AuthEvent(ts=ts, ip=ip, user=user, outcome=outcome, raw=line, lineno=lineno)
 

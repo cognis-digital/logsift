@@ -20,6 +20,12 @@ pip install "git+https://github.com/cognis-digital/logsift.git"
 logsift scan .            # → prioritized findings in seconds
 ```
 
+<!-- cognis:layman:start -->
+## What is this?
+
+LOGSIFT reads the authentication logs that Linux and macOS servers write automatically whenever someone tries to log in. It scans those logs and flags suspicious patterns — such as one computer making dozens of failed login attempts in a row (brute-force), one attacker trying many different usernames (password spray), or a successful login that followed a burst of failures (possible account compromise). You point it at a log file and within seconds get a prioritized list of threats with severity levels, so you know exactly what to investigate first. It is designed for system administrators, security teams, and developers who want a quick, no-setup way to check whether their servers are under attack.
+<!-- cognis:layman:end -->
+
 ## Contents
 
 - [Why logsift?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
@@ -46,6 +52,42 @@ auth-log triage
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="quick-start"></a>
+<!-- cognis:install:start -->
+## Install
+
+`logsift` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/logsift/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/logsift/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/logsift.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/logsift.git"  # uv
+pip install "git+https://github.com/cognis-digital/logsift.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/logsift.git
+cd logsift && pip install .
+```
+
+Then run:
+```sh
+logsift --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start
 
 ```bash
