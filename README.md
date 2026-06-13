@@ -20,6 +20,33 @@ pip install cognis-logsift
 logsift scan .            # → prioritized findings in seconds
 ```
 
+## Usage — step by step
+
+1. **Install** (Python 3.8+, stdlib only):
+   ```bash
+   pip install logsift
+   ```
+2. **Scan an auth/SSH log** for brute-force, spray, and distributed-login patterns:
+   ```bash
+   logsift scan /var/log/auth.log
+   ```
+   `scan` exits `1` when findings exist, `0` when clean, `2` on usage/IO errors.
+3. **Tune the detectors** to your environment:
+   ```bash
+   logsift scan auth.log --bruteforce-threshold 8 --spray-threshold 10 \
+                         --distributed-threshold 6 --window-minutes 15
+   ```
+4. **Read the output as JSON** (or pipe a live log via stdin with `-`):
+   ```bash
+   tail -n 5000 /var/log/auth.log | logsift scan - --format json | jq '.findings[]'
+   ```
+   JSON includes `summary` (events_parsed, failures, distinct_ips, findings) and `findings[]`.
+5. **Gate a CI / cron security check** — fire an alert when anything is detected:
+   ```bash
+   logsift scan auth.log || curl -X POST "$SLACK_WEBHOOK" -d 'auth-log findings detected'
+   ```
+
+
 ## Contents
 
 - [Why logsift?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
