@@ -24,6 +24,8 @@ from .core import parse_lines, analyze, summarize
 def _read_lines(path: str):
     if path == "-":
         return sys.stdin.read().splitlines()
+    if not path or not path.strip():
+        raise OSError("empty file path provided")
     with open(path, "r", encoding="utf-8", errors="replace") as fh:
         return fh.read().splitlines()
 
@@ -77,6 +79,13 @@ def _build_parser() -> argparse.ArgumentParser:
     return p
 
 
+def _validate_positive_int(value: int, name: str) -> Optional[str]:
+    """Return an error message if value is not a positive integer, else None."""
+    if value < 1:
+        return f"error: --{name} must be >= 1 (got {value})"
+    return None
+
+
 def main(argv: Optional[list] = None) -> int:
     parser = _build_parser()
     args = parser.parse_args(argv)
@@ -85,21 +94,37 @@ def main(argv: Optional[list] = None) -> int:
         parser.print_help()
         return 2
 
+    # Validate threshold and window arguments.
+    for flag, val in (
+        ("bruteforce-threshold", args.bruteforce_threshold),
+        ("spray-threshold", args.spray_threshold),
+        ("distributed-threshold", args.distributed_threshold),
+        ("window-minutes", args.window_minutes),
+    ):
+        err = _validate_positive_int(val, flag)
+        if err:
+            print(err, file=sys.stderr)
+            return 2
+
     try:
         lines = _read_lines(args.logfile)
     except OSError as exc:
         print(f"error: cannot read {args.logfile!r}: {exc}", file=sys.stderr)
         return 2
 
-    events = parse_lines(lines)
-    findings = analyze(
-        events,
-        bruteforce_threshold=args.bruteforce_threshold,
-        spray_user_threshold=args.spray_threshold,
-        distributed_ip_threshold=args.distributed_threshold,
-        window_minutes=args.window_minutes,
-    )
-    summary = summarize(events, findings)
+    try:
+        events = parse_lines(lines)
+        findings = analyze(
+            events,
+            bruteforce_threshold=args.bruteforce_threshold,
+            spray_user_threshold=args.spray_threshold,
+            distributed_ip_threshold=args.distributed_threshold,
+            window_minutes=args.window_minutes,
+        )
+        summary = summarize(events, findings)
+    except Exception as exc:  # pragma: no cover
+        print(f"error: analysis failed: {exc}", file=sys.stderr)
+        return 2
 
     if args.format == "json":
         payload = {

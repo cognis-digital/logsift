@@ -19,6 +19,9 @@ from dataclasses import dataclass, field, asdict
 from datetime import datetime, timedelta
 from typing import Iterable, Optional
 
+TOOL_NAME = "logsift"
+TOOL_VERSION = "0.1.0"
+
 # Severity ranking for stable sorting / exit logic.
 SEVERITY_ORDER = {"critical": 3, "high": 2, "medium": 1, "low": 0}
 
