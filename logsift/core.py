@@ -35,7 +35,8 @@ _SYSLOG_RE = re.compile(
 )
 
 _IP_RE = re.compile(r"(?P<ip>(?:\d{1,3}\.){3}\d{1,3}|[0-9a-fA-F:]{2,})")
-_USER_RE = re.compile(r"(?:invalid user|user)\s+(?P<user>[^\s]+)", re.I)
+_USER_RE = re.compile(
+    r"(?:invalid user\s+|user\s+|for\s+(?:invalid user\s+)?)(?P<user>[^\s]+)", re.I)
 _FROM_RE = re.compile(r"from\s+(?P<ip>(?:\d{1,3}\.){3}\d{1,3}|[0-9a-fA-F:]{2,})")
 
 # Outcome detection patterns (lower-cased message tested against these).
