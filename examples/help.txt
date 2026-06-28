@@ -1,0 +1,14 @@
+$ logsift-emit --help
+
+usage: logsift [-h] [--version] {scan} ...
+
+Defensive auth-log triage: detect brute-force, spray, and anomalous logins.
+Analysis/detection only.
+
+positional arguments:
+  {scan}
+    scan      scan an auth log file (use - for stdin)
+
+options:
+  -h, --help  show this help message and exit
+  --version   show program's version number and exit

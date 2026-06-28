@@ -1,0 +1,3 @@
+$ logsift-emit --version
+
+logsift 0.1.0

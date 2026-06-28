@@ -20,6 +20,37 @@ pip install cognis-logsift
 logsift scan .            # → prioritized findings in seconds
 ```
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ logsift-emit --version
+logsift 0.1.0
+```
+
+```console
+$ logsift-emit --help
+usage: logsift [-h] [--version] {scan} ...
+
+Defensive auth-log triage: detect brute-force, spray, and anomalous logins.
+Analysis/detection only.
+
+positional arguments:
+  {scan}
+    scan      scan an auth log file (use - for stdin)
+
+options:
+  -h, --help  show this help message and exit
+  --version   show program's version number and exit
+```
+
+> Blocks above are real `logsift` output — reproduce them from a clone.
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 1. **Install** (Python 3.8+, stdlib only):
